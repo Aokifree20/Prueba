@@ -9,9 +9,9 @@ export class CourseController {
     }
 
     @Get('listacursos')
-    getActiveProducts(){
-        const activeProducts = this.coursesService.findListCourses();
-        return activeProducts.then(res=>{
+    getListCourses(){
+        const listCourses = this.coursesService.findListCourses();
+        return listCourses.then(res=>{
             return{success:true, data: res}
         }).catch(error=>{
             throw new HttpException(error,HttpStatus.INTERNAL_SERVER_ERROR)
@@ -53,4 +53,5 @@ export class CourseController {
             throw new HttpException(error,HttpStatus.INTERNAL_SERVER_ERROR)
         });
     }
+ 
 }

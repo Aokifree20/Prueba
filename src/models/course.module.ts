@@ -1,3 +1,4 @@
+import { IsDateString } from 'class-validator';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class Courses {
@@ -9,7 +10,8 @@ export class Courses {
     curso_nombre:string;
 
     @Column()
-    curso_fecha_inicio:string;
+    @IsDateString({ strict: true})
+    curso_fecha_inicio_formatted:Date;
 
     @Column()
     curso_duracion:number;

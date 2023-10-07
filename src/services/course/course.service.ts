@@ -15,7 +15,7 @@ export class CourseService {
     }
 
     async findListCourses(){
-        const query = 'CALL sp_listar_cursos()'
+        const query = 'CALL sp_listar_cursos1()'
         return await this.coursesRepository.query(query);
     }
 
