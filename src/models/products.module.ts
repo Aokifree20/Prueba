@@ -10,4 +10,7 @@ export class Products{
     @Column()
     description: string;
 
+    @Column()
+    state: boolean;
+
 }

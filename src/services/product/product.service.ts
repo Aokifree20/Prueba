@@ -14,6 +14,11 @@ export class ProductService {
         return await this.productsRepository.find();
     }
 
+    async findActives(){
+        const query = 'CALL GetActiveProducts()'
+        return await this.productsRepository.query(query);
+    }
+
     async findbyId(id: number){
         return await this.productsRepository.findOneBy({id});
     }

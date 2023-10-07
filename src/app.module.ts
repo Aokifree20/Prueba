@@ -6,15 +6,16 @@ import { ProductService } from './services/product/product.service';
 import { ProductController } from './controller/product/product.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Products } from './models/products.module';
-import { CoursesModule } from './courses/courses.module';
+import { CourseController } from './controller/course/course.controller';
+import { CourseService } from './services/course/course.service';
+import { Courses } from './models/course.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({useClass: TypeormService}),
-    TypeOrmModule.forFeature([Products]),
-    CoursesModule
+    TypeOrmModule.forFeature([Products,Courses]),
   ],
-  controllers: [AppController, ProductController],
-  providers: [AppService, TypeormService, ProductService],
+  controllers: [AppController, ProductController, CourseController],
+  providers: [AppService, TypeormService, ProductService, CourseService],
 })
 export class AppModule {}

@@ -1,26 +1,26 @@
 import { Body, Controller, Get, HttpException, HttpStatus, Param, Post } from '@nestjs/common';
-import { ProductService } from '../../services/product/product.service';
-import { Products } from 'src/models/products.module';
+import { Courses } from 'src/models/course.module';
+import { CourseService } from 'src/services/course/course.service';
 
-@Controller('product')
-export class ProductController {
-    constructor( private productsService: ProductService){
+@Controller('course')
+export class CourseController {
+    constructor( private coursesService: CourseService){
 
     }
 
-    @Get('active')
+    @Get('listacursos')
     getActiveProducts(){
-        const activeProducts = this.productsService.findActives();
+        const activeProducts = this.coursesService.findListCourses();
         return activeProducts.then(res=>{
             return{success:true, data: res}
         }).catch(error=>{
             throw new HttpException(error,HttpStatus.INTERNAL_SERVER_ERROR)
         });
     }
-    @Get()
 
+    @Get()
     get(){
-        return this.productsService.findAll().then(res=>{
+        return this.coursesService.findAll().then(res=>{
             return{success:true, data: res}
         }).catch(error=>{
             throw new HttpException(error,HttpStatus.INTERNAL_SERVER_ERROR)
@@ -28,8 +28,8 @@ export class ProductController {
     }
 
     @Post()
-    save(@Body() product: Products){
-        return this.productsService.create(product).then(res=>{
+    save(@Body() course: Courses){
+        return this.coursesService.create(course).then(res=>{
             return{success:true, data: res}
         }).catch(error=>{
             throw new HttpException(error,HttpStatus.INTERNAL_SERVER_ERROR)
@@ -37,8 +37,8 @@ export class ProductController {
     }
 
     @Post('/update')
-    update(@Body() product: Products){
-        return this.productsService.update(product).then(res=>{
+    update(@Body() course: Courses){
+        return this.coursesService.update(course).then(res=>{
             return{success:true, data: res}
         }).catch(error=>{
             throw new HttpException(error,HttpStatus.INTERNAL_SERVER_ERROR)
@@ -47,7 +47,7 @@ export class ProductController {
     
     @Post('/delete/:id')
     delete(@Param() id){
-        return this.productsService.delete(id).then(res=>{
+        return this.coursesService.delete(id).then(res=>{
             return{success:true, data: res}
         }).catch(error=>{
             throw new HttpException(error,HttpStatus.INTERNAL_SERVER_ERROR)
